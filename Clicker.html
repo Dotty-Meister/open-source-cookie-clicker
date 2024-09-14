@@ -1,0 +1,146 @@
+<body>
+<title>Meister Clicker</title>
+<h1 id = "text">Cookies: 0</h1>
+<img id = "cookie" src = "https://purepng.com/public/uploads/large/purepng.com-american-cookiecookieamericandelicioussnacksweetyummybiscuit-21525886868xdoig.png" width = "500" onclick = "Click()">
+</body>
+<div id = "shop"><h1>Paw: 100 cookie</h1>
+<img class = "shop-img" src = "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Dog_Paw_Print.png/1200px-Dog_Paw_Print.png" width = "20%"><div id = "err"><h1>ERR</h1></div><button id = "buy-paw" onclick="Buy('Paw')">Buy</button></div>
+<div id = "circlePaw"></div>
+<audio id = "incorrect">
+    <source src = "/home/chronos/u-989746b35ca3f15366b2282950f0448ee849226c/MyFiles/Downloads/Incorrect.wav" type = "audio/wav">
+</audio>
+<audio id = "buy">
+    <source src = "/home/chronos/u-989746b35ca3f15366b2282950f0448ee849226c/MyFiles/Downloads/kaching.wav" type = "audio/wav">
+</audio>
+<audio id = "click">
+    <source src = "/home/chronos/u-989746b35ca3f15366b2282950f0448ee849226c/MyFiles/Downloads/crunch.mp3" type = "audio/mpeg">
+</audio>
+<style>
+    #cookie {
+  position: relative;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  transition: 0.1s ease scale;
+  top: 50px;
+}
+    #text {
+  text-align: center;
+  font-family: sans-serif;
+  color: white;
+
+}
+    body {
+  background-image: url("https://i.makeagif.com/media/9-05-2022/Rgi0yE.gif");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+    #shop {
+  position: fixed;
+  top: 0;
+  width: 300px;
+  height: 100%;
+  right: 0;
+  background-color: red;
+
+}
+    h1 {
+  color: white;
+  font-family: sans-serif;
+}
+    .shop-img {
+  position: fixed;
+  top:0;
+  right: 0;
+  width: 4%;
+}
+    #buy-paw {
+  font-size: 24;
+  background-color: DarkGreen;
+  color: DarkSeaGreen;
+}
+    #err {
+  display: none;
+  z-index: 100;
+}
+    #circlePaw {
+  width: 20%;
+  height: 20%;
+  margin: auto;
+  
+}
+</style>
+<script>
+const counter = document.getElementById("text");
+var errormessage = document.getElementById("err");
+var x = document.getElementById("cookie");
+var score = 0;
+var pawBought = false;
+var paw = document.createElement("img");
+paw.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Dog_Paw_Print.png/1200px-Dog_Paw_Print.png";
+var src = document.getElementById("circlePaw");
+
+if (x && x.style) {
+x.style.width = 500;
+x.style.height = 500;
+}
+function ChangeScales() {
+if (x && x.style) {
+x.style.scale = 1;
+
+}
+}
+function Click() {
+    var crunch = document.getElementById("click")
+    crunch.pause();
+    crunch.currentTime = 0;
+    score = score + 1;
+    counter.innerHTML = "Cookies: " + score;
+    crunch.play();
+    if (x && x.style) {
+    
+x.style.scale = 1.2;
+        
+setTimeout(ChangeScales, 100);
+
+}
+}    
+function bye() {
+errormessage.style.display = "none";
+}
+function Error(Message) {
+    
+    var no = document.getElementById("incorrect");
+    no.pause();
+    no.currentTime = 0;
+    errormessage.style.display = "inline";
+    errormessage.innerHTML = Message;
+    errormessage.style.color = "white";
+    errormessage.style.fontFamily = "sans-serif";
+    no.play();
+
+   setTimeout(bye, 1000);
+}
+function Buy(Item) {
+    var purchase = document.getElementById("buy");
+    purchase.pause();
+    purchase.currentTime = 0;
+if (Item == 'Paw') {
+    if (score >= 100) {
+        score -= 100;
+        counter.innerHTML = "Cookies: " + score;
+        pawBought = true;
+        purchase.play();
+        paw.style.scale = "0.5";
+        src.appendChild(paw);
+        
+        }else {
+            Error("Not Enough Cookies!");
+        }
+    }
+}
+
+
+
+</script>
